@@ -15,8 +15,8 @@ class CompanyViewSet(APIView):
         serializer_context = {
             'request': request,
         }
-        queryset = Company.objects.filter(id=id).all()
-        
+        # queryset = Company.objects.filter(id=id).all()
+        queryset = Company.objects.filter(id=id).prefetch_related('descendant_companies')
         serializer = CompanySerializer(queryset, many=True,context=serializer_context)
     
         return Response(serializer.data, status=status.HTTP_200_OK)

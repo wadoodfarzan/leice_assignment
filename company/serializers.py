@@ -19,3 +19,10 @@ class CompanySerializer(serializers.ModelSerializer):
         model = Company
         fields = ('id', 'name','parent_id', 'descendant_companies')
         # fields = "__all__"
+        
+
+class CompanySearchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Company
+        fields = ('id', 'name','parent_id')
+        # fields = "__all__"

@@ -7,6 +7,8 @@ class Company(models.Model):
     parent = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True,related_name='descendant_companies')
     # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
     
+    class Meta:
+        verbose_name_plural = 'companies'
     def __str__(self):
         return f"Company ID: {self.id} Name: {self.name}"
 

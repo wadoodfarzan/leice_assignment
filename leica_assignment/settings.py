@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'company.apps.CompanyConfig', # Our New Custo Company App
+    'rest_framework'
 ]
 
 #Add Auth User Custom Class

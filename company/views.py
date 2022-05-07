@@ -36,13 +36,22 @@ class CompanySearchViewSet(APIView):
 
         company = User.objects.filter(id=user_id).values('company_id')[0]
         print('parent_company',company['company_id'])
-        child_companies = Company.objects.filter(parent_id=company['company_id']).values('id')
-        print('child_companies',list(child_companies))
-        child_company_id_list = []
-        for id in list(child_companies):
-            child_company_id_list.append(id['id'])
         
-        print('child_companies',child_company_id_list)
+        # child_companies = Company.objects.filter(parent_id=company['company_id']).values('id')
+        
+        child_companies = get_nested_child(company['company_id'])
+        print('RRRRRRRRRRRRRRRRRRRRRRRRRRRRRR',get_nested_child(company['company_id']))
+        #get all the child companies of the parent
+        
+        
+            
+        
+        print('child_companiesAAAAAAAAAAAAAAAAAAAAAAA',child_companies)
+        # child_company_id_list = []
+        # for id in list(child_companies):
+        #     child_company_id_list.append(id['id'])
+        
+        # print('child_companies',child_company_id_list)
         queries = []
         q = Q(
                 'multi_match',
@@ -52,8 +61,8 @@ class CompanySearchViewSet(APIView):
         queries.append(q)
         
         child_queries = []
-        if child_company_id_list:
-            for company_id in child_company_id_list:
+        if child_companies:
+            for company_id in child_companies:
                 child_queries.append(Q(
                 'term',
                 id=company_id,
@@ -100,3 +109,26 @@ class CompanySearchViewSet(APIView):
 
     
         return Response(result, status=status.HTTP_200_OK)
+    
+
+def get_nested_child(company,child_companies=None):
+    print('companycompanycompany------------1',company)
+    # Company.objects.filter(parent_id=company['company_id']).values('id')
+    if child_companies is None:
+        child_companies = []
+
+    company_id = Company.objects.filter(parent_id=company).values('id')
+    print('company_idcompany_idcompany_id----------2',company_id)
+    if company_id:
+        for id in list(company_id):
+            print('company_idcompany_idcompany_id----------3',id['id'])
+            child_companies.append(id['id'])
+            print('company_idcompany_idcompany_id----------3--1',child_companies)
+            print('company_idcompany_idcompany_id----------4',company_id,'------',id)
+            get_nested_child(id['id'],child_companies)
+    else:
+        pass
+    
+    return child_companies
+             
+    

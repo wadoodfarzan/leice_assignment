@@ -14,4 +14,4 @@ class Company(models.Model):
 
 
 class User(AbstractUser):
-    comapny = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True, blank=True)
+    company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True, blank=True)

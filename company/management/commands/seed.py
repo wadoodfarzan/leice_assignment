@@ -36,10 +36,10 @@ class Command(BaseCommand):
 def create_companies(i):
     """Creates an company object combining different elements from the list"""
     
-    comapny_name = ["Leica AB", "HexaGon AB", "Park Street", "MG Road", "Indiranagar"]
+    company_name = ["Leica AB", "HexaGon AB", "Park Street", "MG Road", "Indiranagar"]
 
     company = Company(
-        name=comapny_name[i-1],
+        name=company_name[i-1],
         parent_id=random.randint(1,5),
         # parent_id=1,
     )
@@ -66,6 +66,7 @@ def create_users(i):
         is_staff=0,
         is_active=1,
         date_joined=make_aware(naive_datetime),
+        company_id=random.randint(1,5)
     )
     user.save()
     print(Company.objects.all())

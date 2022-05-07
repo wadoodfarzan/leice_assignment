@@ -7,7 +7,7 @@ from company.models import Company
 
 @registry.register_document
 class CompanyDocument(Document):
-    id = fields.IntegerField()
+    # id = fields.IntegerField()
 
     class Index:
         name = 'companies'
@@ -19,5 +19,6 @@ class CompanyDocument(Document):
     class Django:
         model = Company
         fields = [
-            'name',
+            'id',
+            'name'
         ]

@@ -12,7 +12,7 @@ class Company(models.Model):
     class Meta:
         verbose_name_plural = 'companies'
     def __str__(self):
-        return f"Company ID: {self.id} Name: {self.name}"
+        return f"{self.id}-{self.name}"
 
 class User(AbstractUser):
     #Adding Company ID Foreign Key in User Table

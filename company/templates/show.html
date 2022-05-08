@@ -3,16 +3,16 @@
 <html lang="en">  
 <head>  
     <meta charset="UTF-8">  
-    <title>Employee Records</title>  
+    <title>Company Records</title>  
     <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
 </head>  
 <body>  
 <table class="table table-striped table-bordered table-sm">  
     <thead class="thead-dark">  
     <tr>  
-        <th>Employee ID</th>  
-        <th>Employee Name</th>  
-        <th>Employee Email</th>  
+        <th>Company ID</th>  
+        <th>Company Name</th>  
+        <th>Company Parent ID</th>  
         <th>Actions</th>  
     </tr>  
     </thead>  
@@ -21,10 +21,10 @@
     <tr>  
         <td>{{ company.id }}</td>  
         <td>{{ company.name }}</td>  
-        <td>{{ company.parent_id }}</td>   
+        <td>{{ company.parent}}</td>   
         <td>  
-            <a href="/edit/{{ company.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
-            <a href="/delete/{{ company.id }}">Delete</a>  
+            <a href="/companies/edit/{{ company.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
+            <a href="/companies/delete/{{ company.id }}">Delete</a>  
         </td>  
     </tr>  
 {% endfor %}  
@@ -32,6 +32,6 @@
 </table>  
 <br>  
 <br>  
-<center><a href="/emp" class="btn btn-primary">Add New Record</a></center>  
+<center><a href="/companies/company" class="btn btn-primary">Add New Record</a></center>  
 </body>  
 </html>

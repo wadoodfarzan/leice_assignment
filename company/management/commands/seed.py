@@ -34,9 +34,10 @@ def create_companies(row_id):
     #calling company model and save record
     company = Company(
         name=company_name[row_id-1],
-        parent_id=random.randint(1,5),
+        parent_id=None if row_id == 1 else row_id-1, #First Company is not child of any company in order to stop infinite recursion
     )
     company.save()
+
     return True
 
 """Creates user object combining different elements from the list. And insert record in Database.
@@ -45,7 +46,7 @@ def create_companies(row_id):
 """
 def create_users(row_id):
     #lists with data to be inserted in User Table
-    user_name = ["Leica", "HexaGon", "Lime", "Nord Cloud", "Microsoft Pvt"]
+    user_name = ["leica", "hexagon", "lime", "nordcloud", "microsoft"]
     first_name = ["Leica", "HexaGon", "Lime", "Nord Cloud", "Microsoft"]
     last_name = ["AB", "AB", "AB", "AB", "PVT"]
     email = ["Leica@Leica.com", "HexaGon@HexaGon.com", "Lime@Lime.com", "Nord@Cloud.com", "Microsoft@Microsoft.com"]
@@ -57,7 +58,7 @@ def create_users(row_id):
         first_name=first_name[row_id-1],
         last_name=last_name[row_id-1],
         email=email[row_id-1],
-        is_staff=0,
+        is_staff=1,
         is_active=1,
         date_joined=make_aware(datetime.now()),
         company_id=random.randint(1,5)

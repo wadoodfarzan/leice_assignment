@@ -2,6 +2,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from django.shortcuts import render
 
 #Python Imports
 import operator
@@ -107,3 +108,7 @@ def create_elastic_response(elastic_search,user_id):
             response.append({"company_id" : result.id,"company_name" : result.name,"user_id" : user_id}) #making list through elastic search response
         
     return response
+
+def show(request):  
+    companies = Company.objects.all()  
+    return render(request,"show.html",{'companies':companies})  

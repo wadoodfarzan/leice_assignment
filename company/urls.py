@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from company.views import CompanyViewSet, CompanySearchViewSet
 
 

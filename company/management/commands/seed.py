@@ -1,22 +1,21 @@
-# <project>/<app>/commands/seed.py
+#Django Imports
 from django.core.management.base import BaseCommand
-from datetime import datetime
 from django.utils.timezone import make_aware
 from django.db import connection
 from django.contrib.auth.hashers import make_password
 
-
+#Python Imports
+from datetime import datetime
 import random
-import hashlib
 
+#Our Custom Imports
 from company.models import Company
 from company.models import User
 
 # python manage.py seed --mode
 
 class Command(BaseCommand):
-    help = "seed database for testing and development."
-
+    help = "Seed Database for testing and development."
     def add_arguments(self, parser):
         pass
 
@@ -24,65 +23,60 @@ class Command(BaseCommand):
         self.stdout.write('Seeding data...')
         run_seed()
         self.stdout.write(self.style.SUCCESS('Successfully seeded data'))
-        
 
-# def make_password(password):
-#     """Generates the hash for a password."""
-#     assert password
-#     hash = hashlib.md5(password.encode('utf-8')).hexdigest()
-#     return hash
-
-
-def create_companies(i):
-    """Creates an company object combining different elements from the list"""
-    
-    company_name = ["Leica AB", "HexaGon AB", "Park Street", "MG Road", "Indiranagar"]
-
+"""Creates company object combining different elements from the list. And insert record in Database.
+:param row_id: loop index
+:return:
+"""
+def create_companies(row_id):
+    #5 company name lists
+    company_name = ["Leica AB", "HexaGon AB", "Lime AB", "Nord Cloud Ab", "Microsoft PVT"]
+    #calling company model and save record
     company = Company(
-        name=company_name[i-1],
+        name=company_name[row_id-1],
         parent_id=random.randint(1,5),
-        # parent_id=1,
     )
     company.save()
-    print(Company.objects.all())
-    return company
+    return True
 
-def create_users(i):
-    """Creates an company object combining different elements from the list"""
-    
-    user_name = ["LeicaUser", "HexaGonUser", "ParkStreetUser", "MGRoadUser", "IndiranagarUser"]
-    first_name = ["Leica User", "HexaGon User", "Park Street User", "MG Road User", "Indiranagar User"]
-    last_name = ["Last Leica User", "Laste HexaGon User", "Laste Park Street User", "Laste MG Road User", "Laste Indiranagar User"]
-    email = ["LastLeicaUser@abc.com", "LasteHexaGonUser@abc.com", "LasteParkStreetUser@abc.com", "LasteMGRoadUser@abc.com", "LasteIndiranagarUser@abc.com"]
-    naive_datetime = datetime.now()
-    
+"""Creates user object combining different elements from the list. And insert record in Database.
+:param mode: row_id index
+:return:
+"""
+def create_users(row_id):
+    #lists with data to be inserted in User Table
+    user_name = ["Leica", "HexaGon", "Lime", "Nord Cloud", "Microsoft Pvt"]
+    first_name = ["Leica", "HexaGon", "Lime", "Nord Cloud", "Microsoft"]
+    last_name = ["AB", "AB", "AB", "AB", "PVT"]
+    email = ["Leica@Leica.com", "HexaGon@HexaGon.com", "Lime@Lime.com", "Nord@Cloud.com", "Microsoft@Microsoft.com"]
+    #calling user model and save record
     user = User(
-        password=make_password('hello123'),
+        password=make_password('123456'),
         is_superuser=0,
-        username=user_name[i-1],
-        first_name=first_name[i-1],
-        last_name=last_name[i-1],
-        email=email[i-1],
+        username=user_name[row_id-1],
+        first_name=first_name[row_id-1],
+        last_name=last_name[row_id-1],
+        email=email[row_id-1],
         is_staff=0,
         is_active=1,
-        date_joined=make_aware(naive_datetime),
+        date_joined=make_aware(datetime.now()),
         company_id=random.randint(1,5)
     )
     user.save()
-    print(Company.objects.all())
-    return user
+    return True
 
+"""Call user and company seeder functions
+:param:
+:return: boolean
+"""
 def run_seed():
-    """ Seed database based on mode
-
-    :param mode: refresh / clear 
-    :return:
-    """
     with connection.constraint_checks_disabled():
-        # Creating 5 companyes
+        # Creating 5 companies
         for i in range(1,6):
-            create_companies(i)
+            create_companies(i) #calling function
         
-        # Creating 5 companyes
+        # Creating 5 users
         for i in range(1,6):
-            create_users(i)
+            create_users(i) #calling function
+        
+    return True

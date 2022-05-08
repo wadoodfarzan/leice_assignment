@@ -37,13 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'company.apps.CompanyConfig', # Our New Custo Company App
-    'rest_framework',
-    'django_elasticsearch_dsl',
+    'company.apps.CompanyConfig', #New Custom App COMPANY Added in Installed Apps
+    'rest_framework', #Rest Frame Work Added
+    'django_elasticsearch_dsl',#ELastic Search DSL added
 ]
 
-#Add Auth User Custom Class
 
+"""Customize Auth Table and Add auth user Custom Class"""
 AUTH_USER_MODEL = 'company.User'
 
 MIDDLEWARE = [
@@ -136,11 +136,13 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+"""Django Rest Framework Configuration"""
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 25
 }
 
+"""Elastic Search IP and Host"""
 ELASTICSEARCH_DSL={
     'default': {
         'hosts': 'localhost:9200'

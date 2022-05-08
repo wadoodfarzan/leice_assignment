@@ -1,28 +1,19 @@
-from dataclasses import field
+#Django Imports
 from rest_framework import serializers
-from company.models import Company
-class DescendantCompanies(serializers.ModelSerializer):
 
-        # self.fields['descendant_companies'] = CompanySerializer()
+#Our Custom Imports
+from company.models import Company
+
+"""Company Descendant Serializer for Serializing the Child Companies"""     
+class DescendantCompanies(serializers.ModelSerializer):
     class Meta:
         model = Company
         fields = ('id', 'name','parent_id','descendant_companies')
         depth = 1
-        
-
-# descendant_companies = DescendantCompanies(many=True, read_only=True)
+"""Company Serializer for Serializing the Company Object"""        
 class CompanySerializer(serializers.ModelSerializer):
-    # id = serializers.PrimaryKeyRelatedField()
+    
     descendant_companies = DescendantCompanies(many=True, read_only=True)
-    # print('descendant_companiesdescendant_companies',descendant_companies)
     class Meta:
         model = Company
         fields = ('id', 'name','parent_id', 'descendant_companies')
-        # fields = "__all__"
-        
-
-class CompanySearchSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Company
-        fields = ('id', 'name','parent_id')
-        # fields = "__all__"

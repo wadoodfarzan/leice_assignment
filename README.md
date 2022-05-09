@@ -180,14 +180,14 @@ Indexing 5 'Company' objects
 `
 
 ## Links
-https://docs.djangoproject.com/en/4.0/intro/tutorial01/
-https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-20-04
-https://docs.djangoproject.com/en/4.0/howto/custom-management-commands/
-https://stackoverflow.com/questions/51577441/how-to-seed-django-project-insert-a-bunch-of-data-into-the-project-for-initi
-https://www.ginkgobioworks.com/2021/02/04/creating-a-rest-api-using-django-rest-framework/
-https://blog.logrocket.com/django-rest-framework-create-api/
-https://stackoverflow.com/questions/58779929/django-url-to-specific-request-method
-https://testdriven.io/blog/django-drf-elasticsearch/
-https://djangotricks.blogspot.com/2018/06/data-filtering-in-a-django-website-using-elasticsearch.html
+- https://docs.djangoproject.com/en/4.0/intro/tutorial01/
+- https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-20-04
+- https://docs.djangoproject.com/en/4.0/howto/custom-management-commands/
+- https://stackoverflow.com/questions/51577441/how-to-seed-django-project-insert-a-bunch-of-data-into-the-project-for-initi
+- https://www.ginkgobioworks.com/2021/02/04/creating-a-rest-api-using-django-rest-framework/
+- https://blog.logrocket.com/django-rest-framework-create-api/
+- https://stackoverflow.com/questions/58779929/django-url-to-specific-request-method
+- https://testdriven.io/blog/django-drf-elasticsearch/
+- https://djangotricks.blogspot.com/2018/06/data-filtering-in-a-django-website-using-elasticsearch.html
 
 

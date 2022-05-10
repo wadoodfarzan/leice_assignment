@@ -12,7 +12,7 @@ import random
 from company.models import Company
 from company.models import User
 
-# python manage.py seed --mode
+# python manage.py seed
 
 class Command(BaseCommand):
     help = "Seed Database for testing and development."

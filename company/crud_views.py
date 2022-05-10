@@ -53,7 +53,7 @@ def edit(request, id):
 """
 def update(request, id):  
     company = Company.objects.get(id=id)  
-    form = CompanyForm(request.POST, instance = company)  
+    form = CompanyForm(request.POST, instance = company)
     if form.is_valid():  
         form.save()  
         return redirect("/companies/show")  
